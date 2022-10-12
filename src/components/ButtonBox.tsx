@@ -10,7 +10,7 @@ export const ButtonBox = () => {
     <Box>
       <VStack spacing={"2rem"}>
         <Button colorScheme="blue">Start Lottery</Button>
-        {participants}
+        <Box>{participants}</Box>
         <Button colorScheme="blue">Resolve Lottery</Button>
       </VStack>
     </Box>
