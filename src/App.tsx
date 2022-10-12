@@ -1,4 +1,3 @@
-
 import {
   ChakraProvider,
   Box,
@@ -8,8 +7,11 @@ import {
   Code,
   Grid,
   theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
+} from "@chakra-ui/react";
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import { ButtonBox } from "./components/ButtonBox";
+import { OngoingView } from "./components/OngoingView";
+import { WinnerView } from "./components/WinnerView";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -17,6 +19,9 @@ export const App = () => (
       <Grid minH="100vh" p={3}>
         <ColorModeSwitcher justifySelf="flex-end" />
         <VStack spacing={8}>
+          <OngoingView />
+          <ButtonBox />
+          <WinnerView />
           <Text>
             Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
           </Text>
@@ -33,4 +38,4 @@ export const App = () => (
       </Grid>
     </Box>
   </ChakraProvider>
-)
+);
