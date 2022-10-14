@@ -12,9 +12,6 @@ export const getGlobalVariables = async (): Promise<globalVars> => {
 
   const globalState = applicationRes.params["global-state"];
 
-  console.log("global state is " + globalState);
-
-  //Key is in encoded using base 64 encoding
   const firstKey = atob(globalState[0].key);
   const firstValue = globalState[0].value.uint;
   const secondKey = atob(globalState[1].key);
@@ -25,17 +22,6 @@ export const getGlobalVariables = async (): Promise<globalVars> => {
   const fourthValue = globalState[3].value.uint;
   const fifthKey = atob(globalState[4].key);
   const fifthValue = globalState[4].value.uint;
-
-  console.log("first key is : " + firstKey + " first value is: " + firstValue);
-  console.log(
-    "second key is : " + secondKey + " second value is: " + secondValue
-  );
-  console.log("third key is : " + thirdKey + " third value is: " + thirdValue);
-  console.log(
-    "fourth key is : " + fourthKey + " fourth value is: " + fourthValue
-  );
-  console.log("fifth key is : " + fifthKey + " fourth value is: " + fifthValue);
-  console.log("algo address " + algosdk.getApplicationAddress(APP_ID));
 
   return {
     [firstKey]: firstValue,
@@ -50,13 +36,36 @@ export const getLastRound = async () => {
   return status["last-round"];
 };
 
-const getLocalVariables = async (account: Account) => {
-  const accountInfo: AccountApplicationResponse = (await algodClient
+export const getParticipantNumber = async (account: Account) => {
+  const accountInfo = await algodClient
     .accountApplicationInformation(account.addr, APP_ID)
-    .do()) as AccountApplicationResponse;
+    .do();
+  console.log(
+    "account info is: " + accountInfo?.["app-local-state"]?.["key-value"]
+  );
+  const values = accountInfo?.["app-local-state"]?.["key-value"];
+  for (let i = 0; i < (values ? values?.length : 0); i++) {
+    if (values?.[i]?.key === btoa("ParticipantNumber")) {
+      console.log(atob(values?.[i]?.key));
+      return values[i].value.uint;
+    }
+  }
+  return -1;
+};
 
-  const values = accountInfo?.appLocalState?.keyValue;
-
-  const local1 = values?.[0];
-  const local2 = values?.[1];
+export const getParticipantRound = async (account: Account) => {
+  const accountInfo = await algodClient
+    .accountApplicationInformation(account.addr, APP_ID)
+    .do();
+  console.log(
+    "account info is: " + accountInfo?.["app-local-state"]?.["key-value"]
+  );
+  const values = accountInfo?.["app-local-state"]?.["key-value"];
+  for (let i = 0; i < (values ? values?.length : 0); i++) {
+    if (values?.[i]?.key === btoa("ParticipantLotteryRound")) {
+      console.log(atob(values?.[i]?.key));
+      return values[i].value.uint;
+    }
+  }
+  return -1;
 };

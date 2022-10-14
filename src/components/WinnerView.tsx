@@ -8,19 +8,18 @@ import {
 export const WinnerView = () => {
   const [lastRound, setLastRound] = React.useState<number | bigint>();
   const [lastLottery, setLastLottery] = React.useState<number | bigint>();
+  const [winner, setWinner] = React.useState<number | bigint>();
   const getRounds = () => {
     setTimeout(() => {
-      console.log("this runs every 5 secs");
       getLastRound().then((round) => {
-        console.log(round);
         setLastRound(round);
       });
-      getRounds();
       getGlobalVariables().then((globalVars) => {
-        console.log(globalVars.LotteryRound);
         setLastLottery(globalVars.LotteryRound);
+        setWinner(globalVars.Winner);
       });
-    }, 10000);
+      getRounds();
+    }, 5000);
   };
   useEffect(() => {
     getRounds();
@@ -28,7 +27,7 @@ export const WinnerView = () => {
   return (
     <HStack spacing={"10rem"}>
       <Text>Current Round {lastRound?.toString()}</Text>
-      <Heading>Winner is: </Heading>
+      <Heading>Winner is: {winner?.toString()}</Heading>
       <Text>Lottery Round: {lastLottery?.toString()}</Text>
     </HStack>
   );

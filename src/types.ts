@@ -7,4 +7,9 @@ export type globalVars = {
   [key: string]: number;
 };
 
-export type abiMethods = "startLottery" | "resolveLottery" | "participate";
+export type abiMethods =
+  | "startLottery"
+  | "resolveLottery"
+  | "participate"
+  | "resetLottery"
+  | "claimWin";

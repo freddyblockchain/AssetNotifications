@@ -9,7 +9,7 @@ import {
   theme,
 } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
-import { ButtonBox } from "./components/ButtonBox";
+import { LotteryView } from "./components/LotteryView";
 import { OngoingView } from "./components/OngoingView";
 import { WinnerView } from "./components/WinnerView";
 
@@ -20,7 +20,7 @@ export const App = () => (
         <ColorModeSwitcher justifySelf="flex-end" />
         <VStack spacing={8}>
           <OngoingView />
-          <ButtonBox />
+          <LotteryView />
           <WinnerView />
           <Text>
             Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.

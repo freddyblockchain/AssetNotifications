@@ -25,7 +25,7 @@ export const lottery_contract = {
                 }
             ],
             "returns": {
-                "type": "byte[]"
+                "type": "uint64"
             }
         },
         {
