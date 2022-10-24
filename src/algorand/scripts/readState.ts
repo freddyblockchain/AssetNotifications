@@ -1,5 +1,5 @@
 import algosdk, { Account } from "algosdk";
-import { algodClient, APP_ID } from "../algoClient";
+import { algodClient, APP_ID, LOTTERY_TOKEN_ID } from "../algoClient";
 import {
   AccountApplicationResponse,
   NodeStatusResponse,
@@ -68,4 +68,17 @@ export const getParticipantRound = async (account: Account) => {
     }
   }
   return -1;
+};
+
+export const lotteryTokenBalance = async (account: Account) => {
+  const myAccount = await algodClient.accountInformation(account.addr).do();
+  // console.log(account);
+  const assets = myAccount.assets;
+
+  const asset: { "asset-id": number; amount: number } = assets.find(
+    (asset: { "asset-id": number; amount: number }) =>
+      asset["asset-id"] === LOTTERY_TOKEN_ID
+  );
+
+  return asset ? asset.amount : 0;
 };

@@ -15,7 +15,7 @@ export const WinnerView = () => {
         setLastRound(round);
       });
       getGlobalVariables().then((globalVars) => {
-        setLastLottery(globalVars.LotteryRound);
+        setLastLottery(globalVars.LotteryRound + 7);
         setWinner(globalVars.Winner);
       });
       getRounds();
@@ -28,7 +28,7 @@ export const WinnerView = () => {
     <HStack spacing={"10rem"}>
       <Text>Current Round {lastRound?.toString()}</Text>
       <Heading>Winner is: {winner?.toString()}</Heading>
-      <Text>Lottery Round: {lastLottery?.toString()}</Text>
+      <Text>Lottery Round {lastLottery?.toString()}</Text>
     </HStack>
   );
 };

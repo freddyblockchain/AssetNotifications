@@ -11,9 +11,14 @@ export const lottery_contract = {
         },
         {
             "name": "claimWin",
-            "args": [],
+            "args": [
+                {
+                    "type": "asset",
+                    "name": "asset_to_receive"
+                }
+            ],
             "returns": {
-                "type": "string"
+                "type": "void"
             }
         },
         {
@@ -37,6 +42,13 @@ export const lottery_contract = {
         },
         {
             "name": "startLottery",
+            "args": [],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "createLotteryAsset",
             "args": [],
             "returns": {
                 "type": "void"
