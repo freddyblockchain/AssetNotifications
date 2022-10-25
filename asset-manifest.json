@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/freddyblockchain/LotteryApp/static/js/main.d4b85cc2.js",
+    "index.html": "/freddyblockchain/LotteryApp/index.html",
+    "main.d4b85cc2.js.map": "/freddyblockchain/LotteryApp/static/js/main.d4b85cc2.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.d4b85cc2.js"
+  ]
+}
