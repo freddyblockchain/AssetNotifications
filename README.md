@@ -1,59 +1,80 @@
-This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app).
+### LICENCE
 
-## Available Scripts
+```
+MIT License
 
-In the project directory, you can run:
+Copyright (c) 2022 FREDERIK NIELSEN
 
-### `yarn start`
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Runs the app in the development mode.<br /> Open
-[http://localhost:3000](http://localhost:3000) to view it in the browser.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-The page will reload if you make edits.<br /> You will also see any lint errors
-in the console.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
-### `yarn test`
+## Link to projects
 
-Launches the test runner in the interactive watch mode.<br /> See the section
-about
-[running tests](https://facebook.github.io/create-react-app/docs/running-tests)
-for more information.
+- https://github.com/freddyblockchain/NFTLottery
+- https://github.com/freddyblockchain/Lottery-App
 
-### `yarn build`
+## Technologies used
 
-Builds the app for production to the `build` folder.<br /> It correctly bundles
-React in production mode and optimizes the build for the best performance.
+- Reactjs
+- Chakra ui
+- Algorand javascript sdk
+- Pyteal
+- Github page
+-
 
-The build is minified and the filenames include the hashes.<br /> Your app is
-ready to be deployed!
+## Project Description
 
-See the section about
-[deployment](https://facebook.github.io/create-react-app/docs/deployment) for
-more information.
+NFTLottery is a lottery, where algorand wallets can participate, to have a chance at winning an algorand asset.
+There are 5 smart contract methods that can be called by anyone. These are:
 
-### `yarn eject`
+- startLottery
+- participate
+- resolveLottery
+- claimWin
+- resetLottery
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Each participant is given a number when participating, and when the lottery is resolved (meaning a winning number has been found), then the winning participant can claim an asset, and the lottery is done.
+Each lottery can be reset after a set number of rounds, to account for a participant never claiming their reward.
 
-If you aren’t satisfied with the build tool and configuration choices, you can
-`eject` at any time. This command will remove the single build dependency from
-your project.
+## Project Architecture
 
-Instead, it will copy all the configuration files and the transitive
-dependencies (webpack, Babel, ESLint, etc) right into your project so you have
-full control over them. All of the commands except `eject` will still work, but
-they will point to the copied scripts so you can tweak them. At this point
-you’re on your own.
+The project is composed of a smart contract, that has the lottery logic, and a front end application, that simulates
+a lottery. The randomness used in the smart contract is retrieved from the randomness smart contract, currently living
+on the testnet (App id : 110096026).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for
-small and middle deployments, and you shouldn’t feel obligated to use this
-feature. However we understand that this tool wouldn’t be useful if you couldn’t
-customize it when you are ready for it.
+## How to use
 
-## Learn More
+During any of these steps, if calling the smart contract fails, an alert will pop up.
+This happens if the lottery is in a state, that does not allow the pressed action.
 
-You can learn more in the
-[Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Go to https://freddyblockchain.github.io/Lottery-App/
+- Press Start Lottery.
+- press "Participate" on the test accounts present below. The accounts will now get a participant number and participant round
+- Wait until the "Current Round" exceeds the "Lottery Round". Both are present on the bottom of the page.
+- Press "Resolve Lottery". After some seconds, "Winning Round" will now have a number between 1 and the number of participants.
+- Press "Claim Win" on the participant, whose participant number matches the winning number.
+- After some seconds, an alert pops up saying you won the NFT, and the participant gets its asset number incremented, and the lottery is done.
+- The whole process can now be repeated.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Demo
+
+## Roadmap
+
+- Create off-chain lookup table, that could automate the process of sending the NFT to the winner.
+- Create wallet integration, that would let any wallet access the lottery, from the front-end application.

@@ -1,6 +1,7 @@
 import { Box, Button, Text, Flex, Spacer } from "@chakra-ui/react";
 import { mnemonicToSecretKey } from "algosdk";
 import { useEffect, useState } from "react";
+import { LOTTERY_TOKEN_ID } from "../algorand/algoClient";
 import { callContractByName } from "../algorand/scripts/callContract";
 import {
   getParticipantNumber,
@@ -35,7 +36,7 @@ export const Participant = (props: ParticipantProps) => {
       });
   };
   const claimReward = async () => {
-    callContractByName(algoAccount, "claimWin", [118116564])
+    callContractByName(algoAccount, "claimWin", [LOTTERY_TOKEN_ID])
       .then(() => {
         alert("you successfully claimed the NFT!");
         lotteryTokenBalance(algoAccount).then((num) => {
