@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/Lottery-App/static/js/main.d4b85cc2.js",
+    "main.js": "/Lottery-App/static/js/main.deeedc96.js",
     "index.html": "/Lottery-App/index.html",
-    "main.d4b85cc2.js.map": "/Lottery-App/static/js/main.d4b85cc2.js.map"
+    "main.deeedc96.js.map": "/Lottery-App/static/js/main.deeedc96.js.map"
   },
   "entrypoints": [
-    "static/js/main.d4b85cc2.js"
+    "static/js/main.deeedc96.js"
   ]
 }
